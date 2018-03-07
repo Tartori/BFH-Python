@@ -34,11 +34,11 @@ Tips:
 
 # Write your code below this line.
 def hello(name):
-    print(f"'Hello, {name}!'")
+    return (f'Hello, {name}!')
 
 
 def print_hello(name):
-    print(f'Hello, {name}!')
+    print(hello(name))
 # Write your code above this line.
 
 if __name__ == '__main__':
