@@ -1,14 +1,16 @@
 def euler(n):
     num=0
-    primes=prime_factors(n)
-    print(primes)
     for i in range(1, n):
-        for prime in primes:
-            if i%prime==0:
-                break
-        else:
+        if gcd(n,i)==1:
             num+=1
     return num
+
+def euler2(n):
+    primes = prime_factors(n)
+    num=1
+    for p in primes:
+        num*=(1-1/p)
+    return num*n
 
 def prime_factors(n):
     i = 2
@@ -23,3 +25,8 @@ def prime_factors(n):
     if n > 1:
         factors.append(n)
     return factors
+
+def gcd(i,j):
+    if i%j==0:
+        return j
+    return gcd(j, i%j)
