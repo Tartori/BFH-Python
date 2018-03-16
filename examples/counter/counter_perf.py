@@ -33,7 +33,7 @@ class Counter:
 def do_profile():
     """Profiles the factory function-based and class-based counter."""
     print(sys.version)    # print the version information of the Python interpreter
-    repetitions = 10000000
+    repetitions = 10_000_000
     print(f'Running counter() {repetitions} times...')
     factory_func_counter = timeit.timeit('counter()',
                                          setup='from counter_perf import make_counter; counter = make_counter()',
