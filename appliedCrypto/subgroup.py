@@ -23,6 +23,8 @@ def gcd(i,j):
 
 def isGenerator(g, p):
     """ Checks for a save prime p=2q+1 if g is Generator of Gq """
+    if(g==1):
+        return False
     q=(p-1)/2
     return g**q%p==1
 

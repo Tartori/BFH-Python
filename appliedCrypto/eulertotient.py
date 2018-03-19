@@ -26,6 +26,20 @@ def prime_factors(n):
         factors.append(n)
     return factors
 
+def prime_factors_duplicates(n):
+    i = 2
+    factors = []
+    while i * i <= n:
+        if n % i:
+            i += 1
+        else:
+            while not n%i:
+                n //= i
+                factors.append(i)
+    if n > 1:
+        factors.append(n)
+    return factors
+
 def gcd(i,j):
     if i%j==0:
         return j
