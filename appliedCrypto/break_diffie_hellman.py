@@ -1,7 +1,14 @@
 def breakDiffieHellman(p,g,A,B):
-    ex = findExponent(p=p, g=g, X=A)
-    key=(B**ex)%p
+    ex,isA = findExponentBetter(p, g, A, B, g, 1)
+    key=(B**ex)%p if isA else (A**ex)%p
     return key
+
+def findExponentBetter(p,g,A,B,m,i):
+    if(m==A):
+        return (i,True)
+    if(m==B):
+        return (i,False)
+    return findExponentBetter(p,g,A,B,m*g%p, i+1)
 
 def findExponent(*,p,g,X,i=1):
     if i==p:
