@@ -60,6 +60,11 @@ def list_min_max_avg_sales(sales_records_iter):
         min_max_sum_count[0], min_max_sum_count[1], min_max_sum_count[2], min_max_sum_count[3],
         min_max_sum_count[0]/min_max_sum_count[3]))
 
+def list_sum_ammount_per_department(sales_records_iter):
+    """ List the sum of the amount per department. """
+    departments_amounts = map(lambda record: (record.department, record.amount), sales_records_iter)
+    
+    
 
 if __name__ == '__main__':
     FILE_NAME = 'mocksales.csv'

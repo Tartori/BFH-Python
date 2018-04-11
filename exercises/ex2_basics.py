@@ -108,8 +108,12 @@ sequence.
 
 """
 
-
 def make_tower(height, *, num_small_bricks, num_tall_bricks):
+    tall,small=divmod(height, 5)
+    return small<=num_small_bricks if tall<=num_tall_bricks else (
+        0<=height-5*num_tall_bricks <=num_small_bricks)
+
+def make_tower_old(height, *, num_small_bricks, num_tall_bricks):
     """Returns True if a tower of `height` can be built out of at most
        num_small_bricks of height 1 and num_tall_bricks of height. """
     if height > num_small_bricks+num_tall_bricks*5:
@@ -122,7 +126,6 @@ def make_tower(height, *, num_small_bricks, num_tall_bricks):
     if small_bricks_needed<=num_small_bricks:
         return True
     return False 
-
 
 def count_occurrence(needle, haystack):
     """Returns the number of times value in 'needle' occurs in
