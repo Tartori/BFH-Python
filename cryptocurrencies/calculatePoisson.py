@@ -1,23 +1,26 @@
 from math import exp
+import itertools
 
-def attackerSuccessProbability(q, z):
-    p=1-q
-    lam = z*(q/p)
-    s=1
-    for k in range(z+1):
-        poisson = exp(-lam)
-        for i in range(1,k+1):
-            poisson *= lam/i
-        s-= poisson*(1-pow(q/p,z-k))
-    return s
-    
+def attack_success_probability(q,z):
+    """
+    Returns  the  success  probability  of  a  double-spending  attack  of  anattacker
+     with  hashpower  share  q  against  a  transaction  with  z  confirmations
+    """
+    p=1.0-q
+    lamb=z*(q/p)
+    sum=1.0
+    for k in range(0, z+1):
+        poisson=exp(-lamb)
+        for i in range(1,  k+1):
+            poisson *= lamb / i
+        sum-=poisson*(1-(q/p)**(z-k))
+    return sum    
 
 if __name__ == '__main__':
     s = 1
     i=1
-    while(s>1/2**256):
-        s=attackerSuccessProbability(0.1, i)
-        i+=1
-    print(s)
-    print(i)
-    print(attackerSuccessProbability(0.1, 340))
+    z=1
+    while attack_success_probability(.1,  z)>=1/2**256:
+        z+=1
+
+    print(z)
